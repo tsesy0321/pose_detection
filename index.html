@@ -3,33 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pose Detection with Feedback</title>
+  <title>Pose Detection</title>
   <style>
     body {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       background-color: #f0f0f0;
       font-family: Arial, sans-serif;
     }
-    .container {
+    .container, .output-container {
       position: relative;
       width: 100%;
       max-width: 800px;
+      margin: 10px 0;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    #video, #canvas {
+    #video, #canvas, #output-video, #output-canvas {
       width: 100%;
       height: auto;
     }
-    #canvas {
+    #canvas, #output-canvas {
       position: absolute;
       top: 0;
       left: 0;
     }
-    #feedback {
+    #feedback, #upload-feedback {
       position: absolute;
       top: 10px;
       left: 10px;
@@ -40,29 +41,51 @@
     }
     #controls {
       text-align: center;
-      margin-top: 20px;
+      margin: 20px 0;
     }
-    #download-btn {
+    #download-btn, #download-video-btn {
       padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
       border: none;
       cursor: pointer;
+      margin: 5px;
+    }
+    #mode-toggle {
+      margin: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div id="mode-toggle">
+    <button onclick="switchMode('live')">Live Mode</button>
+    <button onclick="switchMode('upload')">Upload Mode</button>
+  </div>
+
+  <!-- Live Mode -->
+  <div class="container" id="live-container">
     <video id="video" autoplay playsinline></video>
     <canvas id="canvas"></canvas>
     <div id="feedback">Select a pose and start detection</div>
   </div>
+
+  <!-- Upload Mode -->
+  <div class="container" id="upload-container" style="display: none;">
+    <input type="file" id="video-upload" accept="video/*">
+    <div class="output-container">
+      <video id="output-video" controls></video>
+      <canvas id="output-canvas"></canvas>
+      <div id="upload-feedback">Upload a video to process</div>
+    </div>
+  </div>
+
   <div id="controls">
     <select id="pose-select">
       <option value="1">Lunge</option>
       <option value="2">Sit-up</option>
     </select>
     <button id="download-btn">Download Log</button>
+    <button id="download-video-btn" style="display: none;">Download Processed Video</button>
   </div>
 
   <!-- Load MediaPipe Pose and Drawing Utilities -->
