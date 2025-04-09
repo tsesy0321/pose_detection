@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pose Detection with Feedback</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #video, #canvas {
+      width: 100%;
+      height: auto;
+    }
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #feedback {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      font-size: 20px;
+    }
+    #controls {
+      text-align: center;
+      margin-top: 30px;
+    }
+    #download-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size:18px;
+      height: 50px;   
+      width: 200px;
+    }
+    #pose-select {
+      font-size: 18px; 
+      height: 50px;   
+      width: 200px;    
+      text-align: center;   
+      ;  
+    }
+    #Colab{
+      font-size: 18px; 
+      height: 50px;   
+      width: 200px;    
+      text-align: center;   
+      background-color:skyblue;
+      color:black;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+    <div id="feedback">Select a pose and start detection</div>
+  </div>
+  <div id="controls">
+    <select id="pose-select">
+      <option value="1" style="font-size: 20px;">Lunge</option>
+      <option value="2" style="font-size: 20px;">Sit-up</option>
+    </select>
+    <br><br>
+    <button id="download-btn">Download Log</button>
+    <br><br>
+    <a href="https://colab.research.google.com/drive/1CNR6fKV5pI4lKsxYNdaGQWB3jTU0jnb7?usp=sharing" target="_blank">
+      <button id = "Colab">Video Detection</button>
+    </a>
+  </div>
+
+  <!-- Load MediaPipe Pose and Drawing Utilities -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
