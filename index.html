@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
   <title>Pose Detection</title>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
@@ -17,6 +18,61 @@
   <div id="mode-toggle">
     <button onclick="switchMode('live')">Live Mode</button>
     <button onclick="switchMode('upload')">Upload Mode</button>
+=======
+  <title>Pose Detection with Feedback</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    #video, #canvas {
+      width: 100%;
+      height: auto;
+    }
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #feedback {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px;
+      font-size: 16px;
+    }
+    #controls {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #download-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
+    <div id="feedback">Select a pose and start detection</div>
+>>>>>>> fa1d6057b0fc41526a816b837d5fc361fe675da0
   </div>
   <div id="controls">
     <select id="pose-select">
@@ -25,6 +81,7 @@
     </select>
     <button id="download-btn">Download Log</button>
   </div>
+<<<<<<< HEAD
   <div id="live-container" class="container">
     <video id="video" autoplay playsinline></video>
     <canvas id="canvas"></canvas>
@@ -36,6 +93,12 @@
     <canvas id="output-canvas"></canvas>
     <div id="upload-feedback"></div>
   </div>
+=======
+
+  <!-- Load MediaPipe Pose and Drawing Utilities -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+>>>>>>> fa1d6057b0fc41526a816b837d5fc361fe675da0
   <script src="app.js"></script>
 </body>
 </html>
